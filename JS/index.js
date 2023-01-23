@@ -44,6 +44,7 @@ class Obstacle {
 draw() {
     this.yPos += 10
     ctx.drawImage(kryptoImg, this.xPos, this.yPos, this.width, this.height)
+    
   }
 
   checkCollision() {
@@ -67,7 +68,7 @@ class Bitcoin {
     }
   
   draw() {
-      this.yPos += 5
+      this.yPos += 7
       ctx.drawImage(bitcoinImg, this.xPos, this.yPos, this.width, this.height)
       
     }
@@ -129,6 +130,13 @@ const animate = () => {
 
   if (animateId % 100 === 0) {
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 80, 80))
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 80, 80))
+    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
+    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
+    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
   }
 
