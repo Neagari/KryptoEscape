@@ -2,24 +2,36 @@ const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
 const bgImg = new Image()
-bgImg.src = '../images/road.png'
+bgImg.src = '../images/bgcanvas.png'
 
-const carImg = new Image()
-carImg.src = '../images/car.png'
+const superImg = new Image()
+superImg.src = '../images/Character.png'
 
-const carWidth = 40
-const carHeight = 80
+const kryptoImg = new Image()
+kryptoImg.src = '../images/Kryptonite.png'
+
+const bitcoinImg = new Image()
+bitcoinImg.src = '../images/Bitcoin.png'
+
+const finalScreenImg = new Image()
+finalScreenImg.src = '../images/Final screen elements.png'
+
+const superWidth = 90
+const superHeight = 114
 
 let isMovingLeft = false
 let isMovingRight = false
 
-const carY = canvas.height - carHeight - 20
-let carX = canvas.width / 2 - carWidth / 2
+const superY = canvas.height - superHeight - 100
+let superX = canvas.width /2 - superWidth /2
 
 let animateId
 let gameOver = false
 
+let score = 0
+
 let obstacles = []
+let bitcoins = []
 
 class Obstacle {
   constructor(xPos, yPos, width, height) {
@@ -29,31 +41,70 @@ class Obstacle {
     this.height = height
   }
 
-  draw() {
-    ctx.beginPath()
-    ctx.fillStyle = 'tomato'
-    this.yPos += 2
-    ctx.rect(this.xPos, this.yPos, this.width, this.height)
-    ctx.fill()
-    ctx.closePath()
+draw() {
+    this.yPos += 10
+    ctx.drawImage(kryptoImg, this.xPos, this.yPos, this.width, this.height)
   }
 
   checkCollision() {
     if (
-      carX < this.xPos + this.width &&
-      carX + carWidth > this.xPos &&
-      carY < this.yPos + this.height &&
-      carHeight + carY > this.yPos
+      superX < this.xPos + this.width &&
+      superX + superWidth > this.xPos &&
+      superY < this.yPos + this.height &&
+      superHeight + superY > this.yPos
     ) {
-      gameOver = true
+        endGame()
     }
   }
 }
 
+class Bitcoin {
+    constructor(xPos, yPos, width, height) {
+      this.xPos = xPos
+      this.yPos = yPos
+      this.width = width
+      this.height = height
+    }
+  
+  draw() {
+      this.yPos += 5
+      ctx.drawImage(bitcoinImg, this.xPos, this.yPos, this.width, this.height)
+      
+    }
+  
+    checkCollision(bitcoin) {
+      if (
+        superX < this.xPos + this.width &&
+        superX + superWidth > this.xPos &&
+        superY < this.yPos + this.height &&
+        superHeight + superY > this.yPos
+      ) {
+          console.log("Score inicial",score)
+        const index = bitcoins.indexOf(bitcoin)
+        bitcoins.splice(index,1)
+          score += 10
+          console.log("Score final",score)
+      }
+    }
+  }
+const endGame = () => {
+    console.log("gameOver")
+    obstacles = []
+    bitcoins = []
+    gameOver = true
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.drawImage(finalScreenImg, 0, 0, canvas.width, canvas.height)
+    
+    //remover a kriptonita quando gameover
+    // mostrar o score
+    //mostrar restart
+    document.querySelector("start-button").style.display = "block"
+    animate()
+}
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height)
-  ctx.drawImage(carImg, carX, carY, carWidth, carHeight)
+  ctx.drawImage(superImg, superX, superY, superWidth, superHeight)
 
   obstacles.forEach(obstacle => {
     obstacle.checkCollision()
@@ -62,18 +113,26 @@ const animate = () => {
 
   obstacles = obstacles.filter(obstacle => obstacle.yPos < canvas.height)
 
-  if (isMovingLeft && carX > 60) {
-    carX -= 5
+  bitcoins.forEach(bitcoin => {
+    bitcoin.checkCollision(bitcoin)
+    bitcoin.draw()
+  })
+
+  bitcoins = bitcoins.filter(bitcoin => bitcoin.yPos < canvas.height)
+
+  if (isMovingLeft && superX > 10) {
+    superX -= 7
   }
-  if (isMovingRight && carX < canvas.width - 60 - carWidth) {
-    carX += 5
+  if (isMovingRight && superX < canvas.width - 10 - superWidth) {
+    superX += 7
   }
 
   if (animateId % 100 === 0) {
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
+    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
   }
-  console.log(obstacles)
-  console.log(animateId)
+
+
   if (gameOver) {
     cancelAnimationFrame(animateId)
   } else {
@@ -109,4 +168,3 @@ window.addEventListener('load', () => {
     }
   })
 })
-
