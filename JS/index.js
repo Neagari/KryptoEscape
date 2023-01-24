@@ -30,6 +30,9 @@ let gameOver = false
 
 let score = 0
 
+let audio = new Audio ("../Images/return_of_the_champions.mp3")
+
+
 let obstacles = []
 let bitcoins = []
 
@@ -42,7 +45,7 @@ class Obstacle {
   }
 
 draw() {
-    this.yPos += 10
+    this.yPos += 9
     ctx.drawImage(kryptoImg, this.xPos, this.yPos, this.width, this.height)
     
   }
@@ -70,8 +73,8 @@ class Bitcoin {
   draw() {
       this.yPos += 7
       ctx.drawImage(bitcoinImg, this.xPos, this.yPos, this.width, this.height)
-      
     }
+    
   
     checkCollision(bitcoin) {
       if (
@@ -95,10 +98,12 @@ const endGame = () => {
     gameOver = true
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(finalScreenImg, 0, 0, canvas.width, canvas.height)
+    document.querySelector('.score').style.display = 'block'
+    audio.pause()
     
-    //remover a kriptonita quando gameover
     // mostrar o score
     //mostrar restart
+
     document.querySelector("start-button").style.display = "block"
     animate()
 }
@@ -129,31 +134,34 @@ const animate = () => {
   }
 
   if (animateId % 100 === 0) {
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 30, 30))
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 80, 80))
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 60, 60))
+    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 70, 70))
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 80, 80))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
   }
-
 
   if (gameOver) {
     cancelAnimationFrame(animateId)
   } else {
     animateId = requestAnimationFrame(animate)
-  }
+  }  
 }
+ 
 
 const startGame = () => {
   document.querySelector('.game-intro').style.display = 'none'
+  document.querySelector('.score').style.display = 'none'
   animate()
+  audio.play()
 }
 
 window.addEventListener('load', () => {
+    document.querySelector('.score').style.display = 'none'
   document.getElementById('start-button').onclick = () => {
     startGame()
   }

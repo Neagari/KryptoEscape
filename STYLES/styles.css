@@ -41,3 +41,11 @@ body button {
     float: center;
     padding: 0px 0px;
 }
+
+.score{
+    position: absolute;
+    font-size: 100px;
+    color: white;
+    right: 88vmin;
+    top: 13vmin;
+}
