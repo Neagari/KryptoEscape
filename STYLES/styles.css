@@ -44,8 +44,8 @@ body button {
 
 .score{
     position: absolute;
-    font-size: 100px;
-    color: white;
-    right: 88vmin;
-    top: 13vmin;
+    font-size: 60px;
+    color: #db2ecd;
+    right: 63vmin;
+    top: 27vmin;
 }

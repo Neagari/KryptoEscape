@@ -29,12 +29,14 @@ let animateId
 let gameOver = false
 
 let score = 0
+let scoreElement = document.querySelector(".score")
 
 let audio = new Audio ("../Images/return_of_the_champions.mp3")
 
 
 let obstacles = []
 let bitcoins = []
+
 
 class Obstacle {
   constructor(xPos, yPos, width, height) {
@@ -83,11 +85,11 @@ class Bitcoin {
         superY < this.yPos + this.height &&
         superHeight + superY > this.yPos
       ) {
-          console.log("Score inicial",score)
+          console.log("Inicial Score",score)
         const index = bitcoins.indexOf(bitcoin)
         bitcoins.splice(index,1)
           score += 10
-          console.log("Score final",score)
+          console.log("Final Score",score)
       }
     }
   }
@@ -98,14 +100,13 @@ const endGame = () => {
     gameOver = true
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(finalScreenImg, 0, 0, canvas.width, canvas.height)
+    scoreElement.innerText = `${score} Points`
     document.querySelector('.score').style.display = 'block'
     audio.pause()
     
-    // mostrar o score
-    //mostrar restart
-
-    document.querySelector("start-button").style.display = "block"
-    animate()
+    
+    // show score
+    //show restart button
 }
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -158,12 +159,14 @@ const startGame = () => {
   document.querySelector('.score').style.display = 'none'
   animate()
   audio.play()
+  
 }
 
 window.addEventListener('load', () => {
     document.querySelector('.score').style.display = 'none'
-  document.getElementById('start-button').onclick = () => {
+    document.getElementById('start-button').onclick = () => {
     startGame()
+    
   }
 
   document.addEventListener('keydown', event => {
