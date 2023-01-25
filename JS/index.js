@@ -16,6 +16,8 @@ bitcoinImg.src = '../images/Bitcoin.png'
 const finalScreenImg = new Image()
 finalScreenImg.src = '../images/Final screen elements.png'
 
+//const audio = new Audio ("../Images/return_of_the_champions.mp3")
+
 const superWidth = 90
 const superHeight = 114
 
@@ -31,9 +33,6 @@ let gameOver = false
 let score = 0
 let scoreElement = document.querySelector(".score")
 
-let audio = new Audio ("../Images/return_of_the_champions.mp3")
-
-
 let obstacles = []
 let bitcoins = []
 
@@ -47,7 +46,7 @@ class Obstacle {
   }
 
 draw() {
-    this.yPos += 9
+    this.yPos += 8
     ctx.drawImage(kryptoImg, this.xPos, this.yPos, this.width, this.height)
     
   }
@@ -77,6 +76,7 @@ class Bitcoin {
       ctx.drawImage(bitcoinImg, this.xPos, this.yPos, this.width, this.height)
     }
     
+    
   
     checkCollision(bitcoin) {
       if (
@@ -105,9 +105,10 @@ const endGame = () => {
     audio.pause()
     
     
-    // show score
-    //show restart button
+        //show restart button
+   
 }
+    
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height)
@@ -152,22 +153,22 @@ const animate = () => {
     animateId = requestAnimationFrame(animate)
   }  
 }
- 
 
 const startGame = () => {
   document.querySelector('.game-intro').style.display = 'none'
   document.querySelector('.score').style.display = 'none'
   animate()
   audio.play()
-  
 }
 
 window.addEventListener('load', () => {
-    document.querySelector('.score').style.display = 'none'
     document.getElementById('start-button').onclick = () => {
     startGame()
-    
-  }
+    }
+
+    document.getElementById('restartButton').addEventListener("click",() => {
+        location.reload()
+        })
 
   document.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft') {
