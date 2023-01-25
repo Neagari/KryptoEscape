@@ -3,18 +3,23 @@ const ctx = canvas.getContext('2d')
 
 const bgImg = new Image()
 bgImg.src = '../images/bgcanvas.png'
+bgImg.alt = "bgImg"
 
 const superImg = new Image()
 superImg.src = '../images/Character.png'
+superImg.alt = "superImg"
 
 const kryptoImg = new Image()
 kryptoImg.src = '../images/Kryptonite.png'
+kryptoImg.alt = "kryptoImg"
 
 const bitcoinImg = new Image()
 bitcoinImg.src = '../images/Bitcoin.png'
+bitcoinImg.alt = "bitcoinImg"
 
 const finalScreenImg = new Image()
 finalScreenImg.src = '../images/Final screen elements.png'
+finalScreenImg.alt = "finalScreenImg"
 
 //const audio = new Audio ("../Images/return_of_the_champions.mp3")
 
