@@ -1,3 +1,4 @@
+<h1 align="center"> Krypto Escape </h1>
 
 Game Story:
 
@@ -8,8 +9,16 @@ Instructions:
 Collect the most quantity of coins that you can.
 Avoid Kryptonites at all cost!
 
-Technologies;
+Technologies:
 
 JavaScript
 Canvas
+
+Slides Link:
+
+https://docs.google.com/presentation/d/1f8TrcRvEea4l__7U8PidZ3kqmRD0EuCZp3-tPVBAKQA/edit?usp=sharing
+
+Github Repository Link:
+
+https://github.com/Neagari/kryptoEscape
 
