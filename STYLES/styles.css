@@ -2,6 +2,7 @@
 
 body {
     background-image: url(../Images/Background.png);
+    background-position: center;
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
@@ -38,8 +39,15 @@ body button {
     border-radius: 5px;
     margin-bottom: 20px;
   }
-  #restartButton{
-
+  .gameOver{
+    
+    position: absolute;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 49%;
+    top: 19%;
   }
 
 #game-board {
@@ -48,9 +56,8 @@ body button {
 }
 
 .score{
-    position:absolute;
     font-size: 60px;
     color: #db2ecd;
-    right: 63vmin;
-    top: 27vmin;
-}
+    margin-bottom: 500px;
+    
+   }

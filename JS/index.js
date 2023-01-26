@@ -24,7 +24,7 @@ const finalScreenImg = new Image()
 finalScreenImg.src = 'Images/Final screen elements.png'
 finalScreenImg.alt = "finalScreenImg"
 
-//const audio = new Audio ("../Images/return_of_the_champions.mp3")
+const audio = new Audio ("../Images/return_of_the_champions.mp3")
 
 const superWidth = 90
 const superHeight = 114
@@ -110,6 +110,7 @@ const endGame = () => {
     ctx.drawImage(finalScreenImg, 0, 0, canvas.width, canvas.height)
     scoreElement.innerText = `${score} Points`
     document.querySelector('.score').style.display = 'block'
+    restartButton.style.display = "block"
     audio.pause()
    
 }
