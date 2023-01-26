@@ -24,8 +24,8 @@ const finalScreenImg = new Image()
 finalScreenImg.src = './Images/Final screen elements.png'
 finalScreenImg.alt = "finalScreenImg"
 
-//const audio = new Audio ("../Audio/return_of_the_champions.mp3")
-//audio.Volume = 0.1
+const audio = new Audio ("./Audio/return_of_the_champions.mp3")
+audio.Volume = 0.1
 
 const superWidth = 90
 const superHeight = 114
@@ -60,7 +60,7 @@ draw() {
     }
     
 
-  checkCollision() {
+  checkCollision(obstacle) {
     if (
       superX < this.xPos + this.width &&
       superX + superWidth > this.xPos &&
@@ -68,6 +68,9 @@ draw() {
       superHeight + superY > this.yPos
     ) 
     {
+        //check why didnt work
+        const index = obstacles.indexOf(obstacle)
+        obstacles.splice(index,1)
         endGame()
     }
   }
@@ -95,19 +98,16 @@ class Bitcoin {
         superY < this.yPos + this.height &&
         superHeight + superY > this.yPos
       ) {
-          console.log("Inicial Score",score)
         const index = bitcoins.indexOf(bitcoin)
         bitcoins.splice(index,1)
-          score += 10
-          console.log("Final Score",score)
+        score += 10
       }
     }
   }
 const endGame = () => {
-    console.log("gameOver")
-    obstacles = []
-    bitcoins = []
     gameOver = true
+    obstacles.length = 0
+    bitcoins.length = 0
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(finalScreenImg, 0, 0, canvas.width, canvas.height)
     scoreElement.innerText = `${score} Points`
@@ -123,7 +123,7 @@ const animate = () => {
   ctx.drawImage(superImg, superX, superY, superWidth, superHeight)
 
   obstacles.forEach(obstacle => {
-    obstacle.checkCollision()
+    obstacle.checkCollision(obstacle)
     obstacle.draw()
   })
 
@@ -142,17 +142,32 @@ const animate = () => {
   if (isMovingRight && superX < canvas.width - 10 - superWidth) {
     superX += 7
   }
-
+ 
   if (animateId % 100 === 0) {
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 30, 30))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 50, 50))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 60, 60))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 70, 70))
-    obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 80, 80))
-    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 70, 70))
-    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
-    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 70, 70))
-    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
+    setTimeout(()=>{
+        obstacles.push(new Obstacle((canvas.width - 50) * Math.random(), -50, 50, 50))    
+    },300)
+    setTimeout(()=>{  
+        bitcoins.push(new Bitcoin((canvas.width - 70) * Math.random(), -50, 70, 70))
+    },500)
+    setTimeout(()=>{   
+        obstacles.push(new Obstacle((canvas.width - 70) * Math.random(), -50, 70, 70))
+    },700)
+    setTimeout(()=>{   
+        bitcoins.push(new Bitcoin((canvas.width - 50) * Math.random(), -50, 50, 50))
+    },900)
+    setTimeout(()=>{
+        obstacles.push(new Obstacle((canvas.width - 60) * Math.random(), -50, 60, 60))
+    },1100)
+    setTimeout(()=>{    
+        bitcoins.push(new Bitcoin((canvas.width - 70) * Math.random(), -50, 70, 70))
+    },1300)
+    setTimeout(()=>{   
+        obstacles.push(new Obstacle((canvas.width - 80) * Math.random(), -50, 80, 80))
+    },1500)
+    setTimeout(()=>{   
+        bitcoins.push(new Bitcoin((canvas.width - 50) * Math.random(), -50, 50, 50)) 
+    },1700)
   }
 
   if (gameOver) {
