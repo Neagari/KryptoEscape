@@ -1,24 +1,27 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
+const gameBoard = document.querySelector("#game-board")
+const restartButton = document.querySelector(".gameOver")
+
 const bgImg = new Image()
-bgImg.src = '../Images/bgcanvas.png'
+bgImg.src = 'Images/bgcanvas.png'
 bgImg.alt = "bgImg"
 
 const superImg = new Image()
-superImg.src = '../Images/Character.png'
+superImg.src = 'Images/Character.png'
 superImg.alt = "superImg"
 
 const kryptoImg = new Image()
-kryptoImg.src = '../Images/Kryptonite.png'
+kryptoImg.src = 'Images/Kryptonite.png'
 kryptoImg.alt = "kryptoImg"
 
 const bitcoinImg = new Image()
-bitcoinImg.src = '../Images/Bitcoin.png'
+bitcoinImg.src = 'Images/Bitcoin.png'
 bitcoinImg.alt = "bitcoinImg"
 
 const finalScreenImg = new Image()
-finalScreenImg.src = '../Images/Final screen elements.png'
+finalScreenImg.src = 'Images/Final screen elements.png'
 finalScreenImg.alt = "finalScreenImg"
 
 //const audio = new Audio ("../Images/return_of_the_champions.mp3")
@@ -164,7 +167,10 @@ const startGame = () => {
 }
 
 window.addEventListener('load', () => {
+    restartButton.style.display = "none"
+    gameBoard.style.display = "none"
     document.getElementById('start-button').onclick = () => {
+        gameBoard.style.display = "block"
     startGame()
     }
 
