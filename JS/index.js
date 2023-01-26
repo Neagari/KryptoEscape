@@ -9,22 +9,23 @@ bgImg.src = 'Images/bgcanvas.png'
 bgImg.alt = "bgImg"
 
 const superImg = new Image()
-superImg.src = 'Images/Character.png'
+superImg.src = '../Images/Character.png'
 superImg.alt = "superImg"
 
 const kryptoImg = new Image()
-kryptoImg.src = 'Images/Kryptonite.png'
+kryptoImg.src = '../Images/Kryptonite.png'
 kryptoImg.alt = "kryptoImg"
 
 const bitcoinImg = new Image()
-bitcoinImg.src = 'Images/Bitcoin.png'
+bitcoinImg.src = '../Images/Bitcoin.png'
 bitcoinImg.alt = "bitcoinImg"
 
 const finalScreenImg = new Image()
-finalScreenImg.src = 'Images/Final screen elements.png'
+finalScreenImg.src = '../Images/Final screen elements.png'
 finalScreenImg.alt = "finalScreenImg"
 
-const audio = new Audio ("../Images/return_of_the_champions.mp3")
+//const audio = new Audio ("../Audio/return_of_the_champions.mp3")
+//audio.Volume = 0.1
 
 const superWidth = 90
 const superHeight = 114
@@ -54,10 +55,10 @@ class Obstacle {
   }
 
 draw() {
-    this.yPos += 8
+    this.yPos += Math.floor(Math.random()* 20)
     ctx.drawImage(kryptoImg, this.xPos, this.yPos, this.width, this.height)
+    }
     
-  }
 
   checkCollision() {
     if (
@@ -65,7 +66,8 @@ draw() {
       superX + superWidth > this.xPos &&
       superY < this.yPos + this.height &&
       superHeight + superY > this.yPos
-    ) {
+    ) 
+    {
         endGame()
     }
   }
@@ -80,7 +82,7 @@ class Bitcoin {
     }
   
   draw() {
-      this.yPos += 7
+      this.yPos += Math.floor(Math.random()* 15)
       ctx.drawImage(bitcoinImg, this.xPos, this.yPos, this.width, this.height)
     }
     
@@ -147,9 +149,9 @@ const animate = () => {
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 60, 60))
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 70, 70))
     obstacles.push(new Obstacle(canvas.width * Math.random(), -50, 80, 80))
+    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 70, 70))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
-    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
-    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
+    bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 70, 70))
     bitcoins.push(new Bitcoin(canvas.width * Math.random(), -50, 50, 50))
   }
 
