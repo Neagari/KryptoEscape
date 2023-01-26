@@ -1,7 +1,4 @@
-html{
-    margin:0;
-    padding: 0;
-}
+
 
 body {
     background-image: url(../Images/Background.png);
@@ -42,7 +39,7 @@ body button {
     margin-bottom: 20px;
   }
   #restartButton{
-    
+
   }
 
 #game-board {
