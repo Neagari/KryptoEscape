@@ -5,23 +5,23 @@ const gameBoard = document.querySelector("#game-board")
 const restartButton = document.querySelector(".gameOver")
 
 const bgImg = new Image()
-bgImg.src = 'Images/bgcanvas.png'
+bgImg.src = '/Images/bgcanvas.png'
 bgImg.alt = "bgImg"
 
 const superImg = new Image()
-superImg.src = 'Images/Character.png'
+superImg.src = '/Images/Character.png'
 superImg.alt = "superImg"
 
 const kryptoImg = new Image()
-kryptoImg.src = 'Images/Kryptonite.png'
+kryptoImg.src = '/Images/Kryptonite.png'
 kryptoImg.alt = "kryptoImg"
 
 const bitcoinImg = new Image()
-bitcoinImg.src = 'Images/Bitcoin.png'
+bitcoinImg.src = '/Images/Bitcoin.png'
 bitcoinImg.alt = "bitcoinImg"
 
 const finalScreenImg = new Image()
-finalScreenImg.src = 'Images/Final screen elements.png'
+finalScreenImg.src = '/Images/Final screen elements.png'
 finalScreenImg.alt = "finalScreenImg"
 
 //const audio = new Audio ("../Audio/return_of_the_champions.mp3")
