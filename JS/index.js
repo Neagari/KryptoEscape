@@ -55,7 +55,7 @@ class Obstacle {
   }
 
 draw() {
-    this.yPos += Math.floor(Math.random()* 20)
+    this.yPos += Math.floor(Math.random()* 10)
     ctx.drawImage(kryptoImg, this.xPos, this.yPos, this.width, this.height)
     }
     
