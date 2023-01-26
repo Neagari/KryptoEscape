@@ -170,7 +170,7 @@ window.addEventListener('load', () => {
     restartButton.style.display = "none"
     gameBoard.style.display = "none"
     document.getElementById('start-button').onclick = () => {
-        gameBoard.style.display = "block"
+    gameBoard.style.display = "block"
     startGame()
     }
 
